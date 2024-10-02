@@ -4,16 +4,19 @@ public class revArray {
         int[] arrOne = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
         for (int i=0; i<arrOne.length;i++) {
-            System.out.println(arrOne[i]);
+            System.out.print(arrOne[i] + " ");
+            if (i==arrOne.length-1) {
+                System.out.print("\n");
+            }
         } 
 
         arrOne = reverseArray(arrOne);
         for (int i=0; i<arrOne.length;i++) {
-            System.out.println(arrOne[i]);
+            System.out.print(arrOne[i] + " ");
         } 
 
         int maxNum = findMax(arrOne);
-        System.out.println(maxNum);
+        System.out.println("\n" + maxNum);
 
         int sum = calcSum(arrOne);
         System.out.println(sum);
@@ -23,7 +26,17 @@ public class revArray {
 
         String numIndex = findNum(arrOne, 5);
         System.out.println(numIndex);
-        
+
+        sortArray(arrOne, "asc");
+        for (int i=0; i<arrOne.length;i++) {
+            System.out.print(arrOne[i] + " ");
+        } 
+        System.out.println("\n" + "***********");
+        sortArray(arrOne, "desc");
+        for (int i=0; i<arrOne.length;i++) {
+            System.out.print(arrOne[i] + " ");
+        } 
+
     }
     
     public static int[] reverseArray(int[] arr) {
@@ -70,6 +83,35 @@ public class revArray {
             }
         }
         return "Number not found";
+    }
+
+    public static void sortArray(int[] arr, String order) {
+        if (order=="asc") {
+            int len = arr.length;
+            for (int i=0; i<len-1; i++) {
+                for (int j=0; j<len-1-i; j++){
+                    if(arr[j] > arr[j+1]) {
+                        int temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+        } else if (order=="desc") {
+            int len = arr.length;
+            for (int i=0; i<len-1; i++) {
+                for (int j=0; j<len-1-i; j++) {
+                    if (arr[j] < arr[j+1]) {
+                        int temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Invalid order value. Use 'asc' or 'desc'.");
+        }
     }
 
 }
